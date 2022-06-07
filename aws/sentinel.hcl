@@ -15,11 +15,11 @@ module "aws-functions" {
 }
 
 
-
+/*
 policy "require-private-acl-and-kms-for-s3-buckets" {
   source = "https://github.com/ngenkeng/s3-bucket-policy/tree/main/aws/require-private-acl-and-kms-for-s3-buckets.sentinel"
   enforcement_level = "advisory"
-}
+}*/
 
 
 

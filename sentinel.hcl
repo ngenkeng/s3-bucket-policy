@@ -14,27 +14,16 @@ module "aws-functions" {
   source = "./aws-functions/aws-functions.sentinel"
 }
 
-policy "enforce-mandatory-tags" {
-  source = "./enforce-ec2-mandatory-tags.sentinel"
-  enforcement_level = "hard-mandatory"
-}
+
 
 policy "require-private-acl-and-kms-for-s3-buckets" {
   source = "./require-private-acl-and-kms-for-s3-buckets.sentinel"
   enforcement_level = "hard-mandatory"
 }
-
-policy "restrict-iam-policy-actions" {
-  source = "./restrict-iam-policy-actions.sentinel"
+/*
+policy "restrict-s3-bucket-policies" {
+  source = "./restrict-s3-bucket-policies.sentinel"
   enforcement_level = "hard-mandatory"
-}
+}*/
 
-policy "restrict-ingress-sg-rule-rdp" {
-  source = "./restrict-ingress-sg-rule-rdp.sentinel"
-  enforcement_level = "hard-mandatory"
-}
 
-policy "restrict-ingress-sg-rule-ssh" {
-  source = "./restrict-ingress-sg-rule-ssh.sentinel"
-  enforcement_level = "hard-mandatory"
-}

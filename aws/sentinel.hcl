@@ -1,5 +1,5 @@
 module "tfplan-functions" {
-  source = "../common-functions/tfplan-functions/tfplan-functions.sentinel"
+  source = "https://github.com/ngenkeng/s3-bucket-policy/tree/main/aws/common-functions/tfplan-functions/tfplan-functions.sentinel"
 }
 
 module "tfstate-functions" {

@@ -17,6 +17,7 @@ module "aws-functions" {
 policy "require-private-acl-and-kms-for-s3-buckets" {
   source = "./require-private-acl-and-kms-for-s3-buckets.sentinel"
   enforcement_level = "advisory"
+}
 
 
 

@@ -166,6 +166,10 @@ allowed_roles = {
     "(.*)-dp-dga-dev$",
    # "^DP-PROD-(.*)",      
   ],
+
+     "arn:aws:iam::42048206924:role/bkutfeassumeadmin": [
+    "(.*)-dp-dga-de$",      
+  ],
 }
 workspace_name = tfrun.workspace.name
 

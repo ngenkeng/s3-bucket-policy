@@ -1,0 +1,176 @@
+# This policy restricts accounts that can be assumed by the AWS provider.
+# It includes a map that maps roles to lists of regex expressions
+# that match one or more workspace names
+
+# It can only determine the role_arn if it is set to either a hard-coded value
+# or to a reference to a single Terraform variable.
+# If you want to the policy to pass if the assumed role contains a single
+# non-variable reference or if it finds multiple references, then include a role
+# called "complex" in the allowed_roles map and associate it with workspaces.
+
+# Import aws-functions/aws-functions.sentinel as aws
+import "aws-functions" as aws
+import "tfrun"
+import "aws-functions" as aws
+
+allowed_roles = {
+  "arn:aws:iam::955812269896:role/bkutfeassumeadmin": [
+    "(.*)-DP-DEV$",  
+    "(.*)-dataplatform-dev$",
+    "(.*)-dp-dev$", 
+  ],
+  "arn:aws:iam::741689060922:role/bkutfeassumeadmin": [
+    "(.*)-DP-TEST$",
+    "(.*)-dataplatform-test$",
+    "(.*)-dp-test$",
+  ],
+  "arn:aws:iam::630953916312:role/bkutfeassumeadmin": [
+    "(.*)-DP-UAT$",  
+    "(.*)-dataplatform-preprod$", 
+    "(.*)-dp-preprod$",             
+  ],
+  "arn:aws:iam::000719978115:role/bkutfeassumeadmin": [
+    "(.*)-DI-DEV$",
+    "(.*)-dataingestion-dev$",
+    "(.*)-di-dev$", 
+  ],
+  "arn:aws:iam::475305243357:role/bkutfeassumeadmin": [
+    "(.*)-DI-TEST$",  
+    "(.*)-dataingestion-test$", 
+    "(.*)-di-test$",  
+  ],
+  "arn:aws:iam::586380566481:role/bkutfeassumeadmin": [
+    "(.*)-DI-UAT$",
+    "(.*)-dataingestion-preprod$",
+    "(.*)-di-preprod$",
+    #"^DP-DEV-(.*)",                    
+  ],
+   "arn:aws:iam::285599637351:role/bkutfeassumeadmin": [
+    "(.*)-Tools-Test$",
+    #"^Tools-Test-(.*)",
+  ],
+  "arn:aws:iam::112482769727:role/bkutfeassumeadmin": [
+    "(.*)-development$",
+   # "^development-(.*)",
+  ],
+   "arn:aws:iam::853214620518:role/bkutfeassumeadmin": [
+    "(.*)-DI-PROD$",
+    "(.*)-dataingestion-prod$",
+    "(.*)-di-prod$",
+   # "^DI-PROD-(.*)",
+  ],
+   "arn:aws:iam::137289237186:role/bkutfeassumeadmin": [
+    "(.*)-DP-PROD$",
+    "(.*)-dataplatform-prod$",
+    "(.*)-dp-prod$",
+   # "^DP-PROD-(.*)",
+  ],
+   "arn:aws:iam::337364224189:role/bkutfeassumeadmin": [
+    "(.*)-DB-dev$", 
+    "(.*)-bb-dev$",   
+   # "^DP-PROD-(.*)",
+  ], 
+   "arn:aws:iam::894744093636:role/bkutfeassumeadmin": [
+    "(.*)-Sandbox$",
+   # "^DP-PROD-(.*)",
+  ],
+   "arn:aws:iam::561480909918:role/bkutfeassumeadmin": [
+    "(.*)-wfa-uat$",
+   # "^DP-PROD-(.*)",
+  ],
+   "arn:aws:iam::220026174228:role/bkutfeassumeadmin": [
+    "(.*)-bb-uat$",
+    "(.*)-DB-uat$",
+   # "^DP-PROD-(.*)",
+  ],
+   "arn:aws:iam::035461255177:role/bkutfeassumeadmin": [
+    "(.*)-sharedservices-test$",
+   # "^DP-PROD-(.*)",
+  ],
+   "arn:aws:iam::290184625654:role/bkutfeassumeadmin": [
+    "(.*)-transit$",
+   # "^DP-PROD-(.*)",
+  ],
+   "arn:aws:iam::527313340118:role/bkutfeassumeadmin": [
+    "(.*)-shareddata-services$",
+   # "^DP-PROD-(.*)",
+  ],
+   "arn:aws:iam::357274961268:role/bkutfeassumeadmin": [
+    "(.*)-dr$",
+   # "^DP-PROD-(.*)",
+  ],
+   "arn:aws:iam::042781717431:role/bkutfeassumeadmin": [
+    "(.*)-logging$",
+   # "^DP-PROD-(.*)",
+  ],
+   "arn:aws:iam::390155254843:role/bkutfeassumeadmin": [
+    "(.*)-tools$",
+   # "^DP-PROD-(.*)",
+  ],
+   "arn:aws:iam::637146525942:role/bkutfeassumeadmin": [
+    "(.*)-bb-test$",
+    "(.*)-DB-test$",
+   # "^DP-PROD-(.*)",      
+  ],
+   "arn:aws:iam::694784728011:role/bkutfeassumeadmin": [
+    "(.*)-uat$",
+   # "^DP-PROD-(.*)",      
+  ],
+   "arn:aws:iam::148707113094:role/bkutfeassumeadmin": [
+    "(.*)-production$",
+   # "^DP-PROD-(.*)",      
+  ],
+   "arn:aws:iam::522012499452:role/bkutfeassumeadmin": [
+    "(.*)-test$",
+   # "^DP-PROD-(.*)",      
+  ],
+   "arn:aws:iam::187288382144:role/bkutfeassumeadmin": [
+    "(.*)-security$",
+   # "^DP-PROD-(.*)",      
+  ],
+   "arn:aws:iam::135649792460:role/bkutfeassumeadmin": [
+    "(.*)-data-analysis$",
+   # "^DP-PROD-(.*)",      
+  ],
+   "arn:aws:iam::792643464501:role/bkutfeassumeadmin": [
+    "(.*)-shared-services$",
+   # "^DP-PROD-(.*)",      
+  ],
+   "arn:aws:iam::443275384571:role/bkutfeassumeadmin": [
+    "(.*)-workspaces$",
+   # "^DP-PROD-(.*)",      
+  ],
+   "arn:aws:iam::438140187457:role/bkutfeassumeadmin": [
+    "(.*)-dataguise$",
+   # "^DP-PROD-(.*)",      
+  ],
+   "arn:aws:iam::665825549216:role/bkutfeassumeadmin": [
+    "(.*)-lab$",
+   # "^DP-PROD-(.*)",      
+  ],
+   "arn:aws:iam::701268468297:role/bkutfeassumeadmin": [
+    "(.*)-wfa-prod$",
+   # "^DP-PROD-(.*)",      
+  ],
+   "arn:aws:iam::545088761360:role/bkutfeassumeadmin": [
+    "(.*)-bb-prod$",
+    "(.*)-DB-prod$",
+   # "^DP-PROD-(.*)",      
+  ],
+   "arn:aws:iam::833305375360:role/bkutfeassumeadmin": [
+    "(.*)-master$",
+   # "^DP-PROD-(.*)",      
+  ],
+}
+   "arn:aws:iam::775322149598:role/bkutfeassumeadmin": [
+    "(.*)-dp-dga-dev$",
+   # "^DP-PROD-(.*)",      
+  ],
+
+workspace_name = tfrun.workspace.name
+
+validated_roles = aws.validate_assumed_roles_with_map(allowed_roles, workspace_name)
+
+main = rule {
+  validated_roles
+}

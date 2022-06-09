@@ -161,12 +161,12 @@ allowed_roles = {
     "(.*)-master$",
    # "^DP-PROD-(.*)",      
   ],
-}
+
    "arn:aws:iam::775322149598:role/bkutfeassumeadmin": [
     "(.*)-dp-dga-dev$",
    # "^DP-PROD-(.*)",      
   ],
-
+}
 workspace_name = tfrun.workspace.name
 
 validated_roles = aws.validate_assumed_roles_with_map(allowed_roles, workspace_name)

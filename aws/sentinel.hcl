@@ -25,3 +25,9 @@ policy "restrict-s3-bucket-policies" {
   source = "./restrict-s3-bucket-policies.sentinel"
   enforcement_level = "hard-mandatory"
 }
+
+policy "restrict-assumed-roles-by-workspace" {
+  source = "./restrict-assumed-roles-by-workspace.sentinel"
+  enforcement_level = "hard-mandatory"
+}
+

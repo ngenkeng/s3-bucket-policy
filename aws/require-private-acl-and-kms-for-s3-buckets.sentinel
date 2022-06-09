@@ -17,11 +17,8 @@ nonPrivateS3Buckets = plan.filter_attribute_is_not_value(allS3Buckets,
 # Warnings will be printed for all violations since the last parameter is true
 nonEncryptedS3Buckets = plan.filter_attribute_is_not_value(allS3Buckets,
 	"server_side_encryption_configuration.0.rule.0.apply_server_side_encryption_by_default.0.sse_algorithm",
-	"aws:kms", true)
+	"aws:kms", "AES256" true)
 
-nonEncryptedS3Buckets = plan.filter_attribute_is_not_value(allS3Buckets,
-	"server_side_encryption_configuration.0.rule.0.apply_server_side_encryption_by_default.0.sse_algorithm",
-	"AES256", true)
 
 
 # Main rule
